@@ -72,3 +72,173 @@ footer {
     margin-top: 50px;
     border-top: 1px solid #334155;
 }
+
+/* Sorting visualizer */
+
+header a,
+.widget a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.sort-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #1e293b;
+    border-radius: 12px;
+    margin: 30px 0;
+}
+
+.sort-controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input[type="range"] {
+    accent-color: #38bdf8;
+}
+
+button {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7dd3fc;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.sort-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.sort-card {
+    min-width: 0;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 220px;
+    background-color: #0f172a;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 20px 0;
+}
+
+.bar {
+    flex: 1;
+    min-width: 0;
+    background-color: #38bdf8;
+    border-radius: 3px 3px 0 0;
+}
+
+.bar.compare {
+    background-color: #f59e0b;
+}
+
+.bar.swap {
+    background-color: #a855f7;
+}
+
+.bar.sorted {
+    background-color: #22c55e;
+}
+
+.sort-stats {
+    border-top: 1px solid #334155;
+    margin-bottom: 20px;
+}
+
+.sort-stats span {
+    color: #f1f5f9;
+    font-weight: bold;
+}
+
+details summary {
+    color: #38bdf8;
+    cursor: pointer;
+}
+
+pre {
+    background-color: #0f172a;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: Consolas, monospace;
+    font-size: 0.85rem;
+}
+
+/* Go source code highlighting */
+
+.go-keyword {
+    color: #c084fc;
+}
+
+.go-type {
+    color: #38bdf8;
+}
+
+.go-string {
+    color: #86efac;
+}
+
+.go-comment {
+    color: #94a3b8;
+    font-style: italic;
+}
+
+.go-value {
+    color: #fbbf24;
+}
+
+.copy-source {
+    margin-top: 15px;
+    padding: 8px 12px;
+    background-color: #334155;
+    color: #f1f5f9;
+    font-size: 0.8rem;
+}
+
+.copy-source:hover {
+    background-color: #475569;
+}
+
+.sort-card pre {
+    max-height: 450px;
+    overflow: auto;
+    line-height: 1.6;
+    font-size: 0.85rem;
+    border: 1px solid #334155;
+}
+
+.sort-card details {
+    margin-top: 15px;
+}
+
+.sort-grid {
+    align-items: start;
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Visualizer | Stuff and Things</title>
+    <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+<body>
+
+    <header>
+        <h2>Stuff &amp; Things</h2>
+        <a href="/">Home</a>
+    </header>
+
+    <main>
+        <h1>Sorting Algorithm Visualizer</h1>
+
+        <p>Compare three sorting algorithms executing in Go.</p>
+        <p id="sort-status" role="status">Ready to sort.</p>
+        <section class="sort-controls">
+
+            <label>
+                Array size:
+                <span id="size-value">12</span>
+                <input id="array-size" type="range"
+                       min="2" max="64" value="12">
+            </label>
+
+            <label>
+                Frame delay:
+                <span id="speed-value">100</span> ms
+                <input id="animation-speed" type="range"
+                       min="20" max="500" step="20" value="100">
+            </label>
+
+            <button id="randomize">Randomize</button>
+            <button id="start-sort">Start Sorting</button>
+            <button id="reset">Reset</button>
+
+        </section>
+
+        <section class="sort-grid">
+
+            <article class="sort-card" id="bubble">
+                <h2>Bubble Sort</h2>
+                <p>Average complexity: O(n²)</p>
+
+                <div class="bar-chart"></div>
+
+                <div class="sort-stats">
+                    <p>Comparisons: <span class="comparisons">0</span></p>
+                    <p>Swaps: <span class="swaps">0</span></p>
+                    <p>Shifts: <span class="shifts">0</span></p>
+                    <p>Execution time: <span class="duration">—</span></p>
+                </div>
+
+                <details>
+                    <summary>View Go Source</summary>
+                    <pre><code></code></pre>
+                </details>
+            </article>
+
+            <article class="sort-card" id="insertion">
+                <h2>Insertion Sort</h2>
+                <p>Average complexity: O(n²)</p>
+
+                <div class="bar-chart"></div>
+
+                <div class="sort-stats">
+                    <p>Comparisons: <span class="comparisons">0</span></p>
+                    <p>Swaps: <span class="swaps">0</span></p>
+                    <p>Shifts: <span class="shifts">0</span></p>
+                    <p>Execution time: <span class="duration">—</span></p>
+                </div>
+
+                <details>
+                    <summary>View Go Source</summary>
+                    <pre><code></code></pre>
+                </details>
+            </article>
+
+            <article class="sort-card" id="quick">
+                <h2>Quick Sort</h2>
+                <p>Average complexity: O(n log n)</p>
+
+                <div class="bar-chart"></div>
+
+                <div class="sort-stats">
+                    <p>Comparisons: <span class="comparisons">0</span></p>
+                    <p>Swaps: <span class="swaps">0</span></p>
+                    <p>Shifts: <span class="shifts">0</span></p>
+                    <p>Execution time: <span class="duration">—</span></p>
+                </div>
+
+                <details>
+                    <summary>View Go Source</summary>
+                    <pre><code></code></pre>
+                </details>
+            </article>
+
+        </section>
+    </main>
+
+    <footer>
+        Powered by Go, HTML, CSS, and JavaScript
+    </footer>
+
+    <script src="/js/sorting.js?v=2"></script>
+
+</body>
+</html>
