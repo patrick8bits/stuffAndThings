@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CDN Cache Simulator | Stuff and Things</title>
+
+    <link rel="stylesheet" href="/css/style.css?v=8">
+</head>
+<body>
+
+<header>
+    <h2>Stuff &amp; Things</h2>
+    <a href="/">Home</a>
+</header>
+
+<main>
+    <h1>CDN Cache Simulator</h1>
+
+    <p>
+        Explore how an LRU cache reduces origin requests,
+        improves response times, and handles content eviction.
+        Powered by Go.
+    </p>
+
+    <!-- INTERACTIVE CACHE -->
+
+    <section class="cache-panel">
+        <h2>Interactive Edge Cache</h2>
+
+        <p>
+            Request an object to see whether it's served
+            from the edge cache or the origin server.
+        </p>
+
+        <div class="cache-controls">
+            <label for="cache-object">Content object</label>
+
+            <select id="cache-object">
+                <option value="/video/a">/video/a</option>
+                <option value="/video/b">/video/b</option>
+                <option value="/video/c">/video/c</option>
+                <option value="/video/d">/video/d</option>
+                <option value="/video/e">/video/e</option>
+            </select>
+
+            <button id="fetch-object" type="button">
+                Request Content
+            </button>
+
+            <button id="reset-cache" type="button">
+                Reset Cache
+            </button>
+        </div>
+
+        <p id="cache-status" role="status">
+            Ready. The edge cache has a capacity of 3 objects.
+        </p>
+
+        <div class="cache-stats">
+            <article class="cache-stat">
+                <h3>Cached Objects</h3>
+                <strong id="cache-size">—</strong>
+            </article>
+
+            <article class="cache-stat">
+                <h3>Cache Hits</h3>
+                <strong id="cache-hits">—</strong>
+            </article>
+
+            <article class="cache-stat">
+                <h3>Cache Misses</h3>
+                <strong id="cache-misses">—</strong>
+            </article>
+
+            <article class="cache-stat">
+                <h3>Evictions</h3>
+                <strong id="cache-evictions">—</strong>
+            </article>
+        </div>
+
+    <section class="cache-order-section">
+        <h3>Cached Objects — LRU Order</h3>
+
+        <p>
+            Objects on the left are evicted first.
+            Accessing an object moves it to the right.
+        </p>
+
+        <div class="cache-order-labels">
+            <span>Least Recently Used</span>
+            <span>Most Recently Used</span>
+        </div>
+
+        <div id="cache-order" class="cache-order">
+            <p class="cache-order-empty">
+                Cache is empty. Request an object to begin.
+            </p>
+        </div>
+    </section>
+        
+        <div class="cache-latest">
+            <h3>Latest Request</h3>
+
+            <p>
+                Source:
+                <strong id="cache-last-source">—</strong>
+            </p>
+
+            <p>
+                Latency:
+                <strong id="cache-last-latency">—</strong>
+            </p>
+
+            <p>
+                Content:
+                <span id="cache-last-content">—</span>
+            </p>
+        </div>
+
+        <h3>Request History</h3>
+
+        <div class="cache-table-container">
+            <table class="cache-table">
+                <thead>
+                    <tr>
+                        <th>Content</th>
+                        <th>Source</th>
+                        <th>Latency</th>
+                    </tr>
+                </thead>
+
+                <tbody id="cache-request-history">
+                    <tr>
+                        <td colspan="3">
+                            No requests yet.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- WORKLOAD SIMULATOR -->
+
+    <section class="cache-panel">
+        <h2>Cache Workload Simulator</h2>
+
+        <p>
+            Run 12 predefined requests against a fresh LRU
+            cache and examine how capacity affects performance.
+        </p>
+
+        <div class="cache-controls">
+            <label for="workload-capacity">
+                Cache Capacity
+            </label>
+
+            <select id="workload-capacity">
+                <option value="1">1 Object</option>
+                <option value="2">2 Objects</option>
+                <option value="3" selected>3 Objects</option>
+                <option value="4">4 Objects</option>
+                <option value="5">5 Objects</option>
+            </select>
+
+            <button id="run-workload" type="button">
+                Run Workload
+            </button>
+        </div>
+
+        <p id="workload-status" role="status">
+            Select a capacity and run the demonstration.
+        </p>
+
+        <div class="cache-stats">
+            <article class="cache-stat">
+                <h3>Hit Ratio</h3>
+                <strong id="workload-hit-rate">—</strong>
+            </article>
+
+            <article class="cache-stat">
+                <h3>Origin Requests</h3>
+                <strong id="workload-origin-requests">—</strong>
+            </article>
+
+            <article class="cache-stat">
+                <h3>Evictions</h3>
+                <strong id="workload-evictions">—</strong>
+            </article>
+
+            <article class="cache-stat">
+                <h3>Total Time</h3>
+                <strong id="workload-duration">—</strong>
+            </article>
+        </div>
+
+        <h3>Cache Hit Ratio</h3>
+
+        <div class="cache-hit-track">
+            <div id="workload-hit-bar"></div>
+        </div>
+
+        <h3>Request Timeline</h3>
+
+        <div class="cache-table-container">
+            <table class="cache-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Content</th>
+                        <th>Source</th>
+                        <th>Latency</th>
+                    </tr>
+                </thead>
+
+                <tbody id="workload-results">
+                    <tr>
+                        <td colspan="4">
+                            Run a workload to display results.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="cache-panel">
+    <h2>Explore the Go Implementation</h2>
+
+    <p>
+        Examine the source code behind our LRU cache,
+        origin simulator, request coalescing, and workload.
+    </p>
+
+    <details class="cache-source" data-component="lru">
+        <summary>LRU Cache — lru.go</summary>
+        <pre><code></code></pre>
+    </details>
+
+    <details class="cache-source" data-component="origin">
+        <summary>Origin Simulator — origin.go</summary>
+        <pre><code></code></pre>
+    </details>
+
+    <details class="cache-source" data-component="service">
+        <summary>Cache Service — service.go</summary>
+        <pre><code></code></pre>
+    </details>
+
+    <details class="cache-source" data-component="workload">
+        <summary>Demo Workload — workload.go</summary>
+        <pre><code></code></pre>
+    </details>
+</section>
+
+
+</main>
+
+<footer>
+    Powered by Go, HTML, CSS, and JavaScript
+</footer>
+
+<script src="/js/cache.js?v=3"></script>
+
+</body>
+</html>

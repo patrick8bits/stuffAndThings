@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/patrick8bits/stuffAndThings/internal/cache"
 	"github.com/patrick8bits/stuffAndThings/internal/health"
 )
 
@@ -57,6 +58,17 @@ func main() {
 	mux.HandleFunc("/api/sort/source", sortSourceHandler)
 	mux.HandleFunc("/api/health", newHealthHandler(client, targets))
 	mux.HandleFunc("/api/health/source", healthSourceHandler)
+	cacheService, err := cache.NewDemoService(3)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	mux.HandleFunc("/api/cache", newCacheHandler(cacheService))
+	mux.HandleFunc("/api/cache/workload", newCacheWorkloadHandler())
+	mux.HandleFunc("/api/cache/stats", newCacheStatsHandler(cacheService))
+	mux.HandleFunc("/api/cache/reset", newCacheResetHandler(cacheService))
+	mux.HandleFunc("/api/cache/order", newCacheOrderHandler(cacheService))
+	mux.HandleFunc("/api/cache/source", cacheSourceHandler)
 
 	log.Println("Server starting at http://localhost:8080")
 
