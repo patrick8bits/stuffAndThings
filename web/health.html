@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDN Health Monitor | Stuff and Things</title>
+    <link rel="stylesheet" href="/css/style.css?v=5">
+</head>
+<body>
+
+    <header>
+        <h2>Stuff &amp; Things</h2>
+        <a href="/">Home</a>
+    </header>
+
+    <main>
+        <h1>CDN Health Monitor</h1>
+
+        <p>
+            Compare sequential and concurrent HTTP health checks
+            across a simulated CDN fleet using Go.
+        </p>
+
+        <section class="health-controls">
+            <button id="run-sequential">Run Sequential</button>
+            <button id="run-concurrent">Run Concurrent</button>
+            <button id="compare-both">Compare Both</button>
+        </section>
+
+        <p id="health-status" role="status">
+            Ready to monitor.
+        </p>
+
+        <section class="health-summary">
+            <article class="health-stat">
+                <h3>Total Servers</h3>
+                <span id="total-servers">—</span>
+            </article>
+
+            <article class="health-stat">
+                <h3>Healthy</h3>
+                <span id="healthy-servers">—</span>
+            </article>
+
+            <article class="health-stat">
+                <h3>Unhealthy / Failed</h3>
+                <span id="unhealthy-servers">—</span>
+            </article>
+        </section>
+
+        <section class="health-panel">
+            <h2>Server Health</h2>
+
+            <div class="table-container">
+                <table class="health-table">
+                    <thead>
+                        <tr>
+                            <th>Server</th>
+                            <th>Status</th>
+                            <th>HTTP Status</th>
+                            <th>Latency</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="health-results">
+                        <tr>
+                            <td colspan="4">
+                                Run a health check to display results.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="health-panel">
+            <h2>Execution Performance</h2>
+
+            <div class="performance-row">
+                <div class="performance-label">
+                    <span>Sequential</span>
+                    <span id="sequential-time">—</span>
+                </div>
+
+                <div class="performance-track">
+                    <div id="sequential-bar"
+                         class="performance-bar sequential">
+                    </div>
+                </div>
+            </div>
+
+            <div class="performance-row">
+                <div class="performance-label">
+                    <span>Concurrent</span>
+                    <span id="concurrent-time">—</span>
+                </div>
+
+                <div class="performance-track">
+                    <div id="concurrent-bar"
+                         class="performance-bar concurrent">
+                    </div>
+                </div>
+            </div>
+
+            <div class="performance-summary">
+                <strong id="speedup">—</strong>
+                <p>Concurrent execution speedup</p>
+
+                <p>
+                    Execution time reduction:
+                    <span id="time-reduction">—</span>
+                </p>
+            </div>
+        </section>
+<section class="health-panel">
+    <h2>Explore the Go Implementation</h2>
+
+    <p>
+        Explore the Go code behind our HTTP health checks,
+        simulated CDN servers, and concurrent monitoring.
+    </p>
+
+    <details class="health-source" data-component="monitor">
+        <summary>Individual Health Check — monitor.go</summary>
+        <pre><code></code></pre>
+    </details>
+
+    <details class="health-source" data-component="simulator">
+        <summary>CDN Server Simulator — simulator.go</summary>
+        <pre><code></code></pre>
+    </details>
+
+    <details class="health-source" data-component="sequential">
+        <summary>Sequential Monitoring — sequential.go</summary>
+        <pre><code></code></pre>
+    </details>
+
+    <details class="health-source" data-component="concurrent">
+        <summary>Concurrent Monitoring — concurrent.go</summary>
+        <pre><code></code></pre>
+    </details>
+</section>
+    </main>
+
+    <footer>
+        Powered by Go, HTML, CSS, and JavaScript
+    </footer>
+
+<script src="/js/health.js?v=3"></script>
+
+</body>
+</html>
