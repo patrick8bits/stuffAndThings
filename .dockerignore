@@ -1,0 +1,16 @@
+.git
+.github
+.vscode
+.idea
+
+*.exe
+*.test
+*.out
+
+bin
+dist
+
+.env
+.env.*
+README.md
+docs

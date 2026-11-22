@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/patrick8bits/stuffAndThings/internal/cache"
@@ -70,9 +71,15 @@ func main() {
 	mux.HandleFunc("/api/cache/order", newCacheOrderHandler(cacheService))
 	mux.HandleFunc("/api/cache/source", cacheSourceHandler)
 
-	log.Println("Server starting at http://localhost:8080")
+	address := os.Getenv("LISTEN_ADDR")
 
-	err = http.ListenAndServe("127.0.0.1:8080", mux)
+	if address == "" {
+		address = "127.0.0.1:8080"
+	}
+
+	log.Printf("Server listening on %s", address)
+
+	err = http.ListenAndServe(address, mux)
 
 	if err != nil {
 		log.Fatal(err)
